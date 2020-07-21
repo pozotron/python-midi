@@ -2,10 +2,10 @@ from struct import unpack, pack
 from typing import BinaryIO, Union
 from warnings import warn
 
-from src.constants import DEFAULT_MIDI_HEADER_SIZE
-from src.containers import Track, Pattern
-from src.events import MetaEvent, EventRegistry, UnknownMetaEvent, SysexEvent, Event
-from src.util import read_varlen, write_varlen
+from .constants import DEFAULT_MIDI_HEADER_SIZE
+from .containers import Track, Pattern
+from .events import MetaEvent, EventRegistry, UnknownMetaEvent, SysexEvent, Event
+from .util import read_varlen, write_varlen
 
 
 class FileReader(object):

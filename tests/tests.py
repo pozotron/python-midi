@@ -1,5 +1,5 @@
 import unittest
-import src as midi
+import midi
 import time
 import os
 
