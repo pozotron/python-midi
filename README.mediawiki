@@ -18,7 +18,7 @@ have to calculate ticks to wall clock, for example.
 This MIDI Python toolkit represents about two years of scattered work.  If you
 are someone like me, who has spent a long time looking for a Python MIDI
 framework, than this might be a good fit.  It's not perfect, but it has a large
-feature set to offer.
+feature set to offer. Some features might be broken here.
 
 ==Features==
 
