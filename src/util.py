@@ -1,38 +1,28 @@
 
 def read_varlen(data):
-    NEXTBYTE = 1
+    has_next_byte = True
     value = 0
-    while NEXTBYTE:
-        chr = ord(data.next())
+    while has_next_byte:
+        char = next(data)
         # is the hi-bit set?
-        if not (chr & 0x80):
+        if not (char & 0x80):
             # no next BYTE
-            NEXTBYTE = 0
+            has_next_byte = False
         # mask out the 8th bit
-        chr = chr & 0x7f
+        char = char & 0x7f
         # shift last value up 7 bits
         value = value << 7
         # add new value
-        value += chr
+        value += char
     return value
 
-def write_varlen(value):
-    chr1 = chr(value & 0x7F)
-    value >>= 7
-    if value:
-        chr2 = chr((value & 0x7F) | 0x80)
-        value >>= 7
-        if value:
-            chr3 = chr((value & 0x7F) | 0x80)
-            value >>= 7
-            if value:
-                chr4 = chr((value & 0x7F) | 0x80)
-                res = chr4 + chr3 + chr2 + chr1
-            else:
-                res = chr3 + chr2 + chr1
-        else:
-            res = chr2 + chr1
-    else:
-        res = chr1
-    return res
 
+def write_varlen(value):
+    result = bytearray()
+    high_bit = 0
+    while value > 0x7F:
+        result.append((value & 0x7F) | high_bit)
+        value >>= 7
+        high_bit = 0x80
+    result.append(value | high_bit)
+    return result[::-1]
