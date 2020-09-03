@@ -58,6 +58,10 @@ class TestMIDI(unittest.TestCase):
                 self.assertEqual(event1.data, event2.data)
 
     def test_slicing_containers(self):
+        """
+        Using slices caused crashes, so this test makes sure all kinds of slices work as usual
+        """
+
         pattern = midi.Pattern()
         pattern.extend([midi.Track()] * 5)
         result1 = pattern[1]
