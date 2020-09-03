@@ -57,6 +57,19 @@ class TestMIDI(unittest.TestCase):
                 self.assertEqual(event1.tick, event2.tick)
                 self.assertEqual(event1.data, event2.data)
 
+    def test_slicing_containers(self):
+        pattern = midi.Pattern()
+        pattern.extend([midi.Track()] * 5)
+        result1 = pattern[1]
+        result2 = pattern[1:5]
+        result3 = pattern[::2]
+
+        track = midi.Track()
+        track.extend([midi.Event()] * 5)
+        result1 = track[1]
+        result2 = track[1:5]
+        result3 = track[::2]
+
 
 class TestSequencerALSA(unittest.TestCase):
     TEMPO = 120
